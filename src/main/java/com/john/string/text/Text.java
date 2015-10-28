@@ -1,35 +1,35 @@
 package com.john.string.text;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-public class Text {
+public class Text implements Iterable<Paragraph>{
 	private List<Paragraph> paragraphs;
 
-	public Text(List<String> paragraphs) {
-		this.paragraphs = processingString(paragraphs);
+	public Text(List<Paragraph> paragraphs) {
+		//System.out.println(paragraphs);
+		this.paragraphs = paragraphs;
 	}
 
 	@Override
 	public String toString() {
+		return paragraphs.toString();
+	}
+
+
+	
+	public String assembleText() {
 		String result = "";
-		for (Paragraph paragraph : paragraphs) {
-			result = paragraph + "\n";
+		for (Paragraph subparagraph : paragraphs) {
+			result += subparagraph.assembleSubparagraph() + "\n";
 		}
 		return result;
 	}
 
-	private List<Paragraph> processingString(List<String> paragraphs) {
-		List<Paragraph> result = new ArrayList<Paragraph>();
-		for (String paragraph : paragraphs) {
-			String processingString = paragraph.trim();
-			for (int count = 0; count < 5; count++) {
-				processingString = processingString.replaceAll("  ", " ");
-			}
-			if (!processingString.equals("")) {
-				result.add(new Paragraph(processingString));
-			}
-		}
-		return result;
+	@Override
+	public Iterator<Paragraph> iterator() {
+		Iterator<Paragraph> iprof = paragraphs.iterator();
+        return iprof; 
 	}
 }

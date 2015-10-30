@@ -12,10 +12,8 @@ import com.john.string.parse.exception.ParsingException;
 import com.john.string.prepare.DefaultPreparer;
 import com.john.string.prepare.Preparer;
 import com.john.string.prepare.action.Action;
-import com.john.string.prepare.action.exception.PrepareException;
 import com.john.string.prepare.exeption.PreparingException;
 import com.john.string.task.Task;
-import com.john.string.text.Paragraph;
 import com.john.string.text.Text;
 
 public class TextAction {
@@ -27,35 +25,34 @@ public class TextAction {
 	private Parser parser;
 
 	private List<Action> asPreparer;
+	private List<Task> asTask;
 
 	public TextAction(String pathParam, String charParam, List<Task> asTask, List<Action> asPreparer) {
 		this.reader = new ReadingFromFileSystem(pathParam, charParam);
 		this.preparer = new DefaultPreparer();
 		this.parser = new SimpleParser();
 		this.asPreparer = asPreparer;
-		// this.parser
+		this.asTask = asTask;
 	}
 
-	public void executse() throws TextActionException, ReadingException, PreparingException, ParsingException {
-//		try {
+	public void execute() throws TextActionException, ReadingException, PreparingException, ParsingException {
+		try {
 			List<String> lines = reader.readAllLines();
 			lines = preparer.prepare(lines, asPreparer);
 			Text text = parser.parse(lines);
-			for (Paragraph paragraph : text) { 
-				//System.out.println(paragraph);
+
+			if (!asTask.isEmpty()) {
+				for (Task task : asTask) {
+					task.run(text);
+				}
 			}
-			// if (!tasks.isEmpty()) {
-			// for (Task task : tasks) {
-			// text = task.execute(text);
-			// }
-			// }
-//		} catch (ReadingException e) {
-//			throw new TextActionException("Reading error.", e);
-//		} catch (PreparingException e) {
-//			throw new TextActionException("Preparing error.", e);
-//		}  catch (ParsingException e) {
-//			 throw new TextActionException("Parsing error.", e);
-//		 }
+		} catch (ReadingException e) {
+			throw new TextActionException("Reading error.", e);
+		} catch (PreparingException e) {
+			throw new TextActionException("Preparing error.", e);
+		} catch (ParsingException e) {
+			throw new TextActionException("Parsing error.", e);
+		}
 	}
 
 }

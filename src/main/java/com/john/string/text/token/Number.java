@@ -9,10 +9,6 @@ public class Number extends Token{
 	
 	@Override
 	public String toString() {
-		return number + "";
-	}
-	
-	public String assemble() {
-		return number + "";
+		return Integer.toString(number);
 	}
 }

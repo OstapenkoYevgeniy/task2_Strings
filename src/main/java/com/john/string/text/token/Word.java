@@ -7,25 +7,37 @@ import com.john.string.text.Letter;
 
 public class Word extends Token {
 	private List<Letter> letters = new ArrayList<Letter>();
-	
+
 	public Word(List<Letter> letters) {
-		letters = letters;
-	}
-	
-	private List<Letter> parseWortToLetters(String word) {
-		List<Letter> letters = new ArrayList<Letter>();
-		for (int count = 0; count < word.length(); count++) {
-			letters.add(new Letter(word.charAt(count)));
-		}
-		return letters;
+		this.letters = letters;
 	}
 
-	public String assemble() {
+	public String getWord() {
 		String result = "";
 		for (Letter letter : letters) {
 			result += letter;
 		}
 		return result;
 	}
-	
+
+	@Override
+	public String toString() {
+		String result = "";
+		for (Letter letter : letters) {
+			result += letter;
+		}
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		String wordOne = this.getWord().toLowerCase();
+		Word other = (Word) obj;
+		String wordTwo = other.getWord().toLowerCase();
+		if (wordOne.equals(wordTwo)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

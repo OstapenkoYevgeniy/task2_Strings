@@ -9,7 +9,6 @@ public class Letter {
 
 	@Override
 	public String toString() {
-		return letter + "";
+		return Character.toString(letter);
 	}
-	
 }

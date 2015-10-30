@@ -1,5 +1,7 @@
 package com.john.string.task;
 
+import com.john.string.text.Text;
+
 public interface Task {
-	void run();
+	void run(Text text);
 }

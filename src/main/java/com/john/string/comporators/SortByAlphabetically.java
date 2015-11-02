@@ -14,14 +14,4 @@ public class SortByAlphabetically implements Comparator<Word> {
 
 		return charOne.compareTo(charTwo);
 	}
-
-	private int getNumberOfWords(Sentence sentence) {
-		int result = 0;
-		for (Token token : sentence) {
-			if (token instanceof Word) {
-				result++;
-			}
-		}
-		return result;
-	}
 }

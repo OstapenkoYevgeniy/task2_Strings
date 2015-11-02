@@ -1,8 +1,5 @@
 package com.john.string.task;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.john.string.extractor.TextExtractor;
 import com.john.string.printer.TextPrinter;
 import com.john.string.text.Sentence;
@@ -10,17 +7,21 @@ import com.john.string.text.Text;
 import com.john.string.text.token.Token;
 import com.john.string.text.token.Word;
 
+import java.util.List;
+
+/**
+ * В каждом предложении текста поменять местами первое слово с последним, не изменяя длины предложения.
+ */
 public class Task5 implements Task {
 	TextPrinter textPrinter = new TextPrinter();
 	TextExtractor textExtractor = new TextExtractor();
-	List<Sentence> sentences;
 
 	@Override
 	public void run(Text text) {
-
 		List<Sentence> result = textExtractor.extractAllSentence(text);
 
 		for (Sentence sentence : result) {
+			// 'min' и 'max' - для поиска первого и последнего слова в предложении
 			int min = 9999;
 			int max = 0;
 			List<Token> tokens = sentence.getTokens();
@@ -34,6 +35,7 @@ public class Task5 implements Task {
 				}
 			}
 
+			// Замена слов
 			Token tmpToken = tokens.get(min);
 			tokens.set(min, tokens.get(max));
 			tokens.set(max,tmpToken);

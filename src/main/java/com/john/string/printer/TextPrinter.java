@@ -30,7 +30,7 @@ public class TextPrinter {
 			System.out.println(sentence);
 		}
 	}
-	
+
 	public void printWords(List<Word> words) {
 		for (Word word : words) {
 			System.out.println(word);

@@ -38,7 +38,7 @@ public class SimpleParser implements Parser {
 		return new Paragraph(listSentence);
 	}
 
-	private Sentence SentenceToToken(String sentence) throws ParsingException {
+	public Sentence SentenceToToken(String sentence) throws ParsingException {
 		List<Token> listToken = new ArrayList<Token>();
 		String regex = "(([а-яА-Яa-zA-Z]+-[а-яА-Яa-zA-Z]+)|([а-яА-Яa-zA-Z]+)|([0-9]+)|[^а-яА-Яa-zA-Z0-9])";
 
@@ -61,7 +61,8 @@ public class SimpleParser implements Parser {
 		return new Sentence(listToken);
 	}
 
-	private List<Letter> letterToWord(String word) {
+	// TODO переименовать WordToLetter
+	public List<Letter> letterToWord(String word) {
 		List<Letter> listLetter = new ArrayList<Letter>();
 		for (int count = 0; count < word.length(); count++) {
 			listLetter.add(new Letter(word.charAt(count)));

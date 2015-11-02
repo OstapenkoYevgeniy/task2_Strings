@@ -17,7 +17,7 @@ public class SortByRatioVowel implements Comparator<Word> {
 	private float getRatioVowel(String word) {
 		float vowel = 0; // гласная буква
 		float consonant = 0; // согласная буква
-// TODO сделать модификаторы шаблонов
+
 		for (int i = 0; i < word.length(); i++) {
 			String letter = Character.toString(word.charAt((i)));
 			if (letter.toUpperCase().matches("[БВГДЖЗЙКЛМНПРСТФХЦЧШЩ]")) {

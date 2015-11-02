@@ -9,6 +9,9 @@ import com.john.string.printer.TextPrinter;
 import com.john.string.text.Text;
 import com.john.string.text.token.Word;
 
+/**
+ * Слова текста, начинающиеся с гласных букв, рассортировать в алфавитном порядке по первой согласной букве слова.
+ */
 public class Task8 implements Task {
 	private TextPrinter textPrinter = new TextPrinter();
 	private TextExtractor textExtractor = new TextExtractor();
@@ -21,7 +24,10 @@ public class Task8 implements Task {
 		words.sort(new SortByFirstConsonant());
 		textPrinter.printWords(words);
 	}
-	
+
+	/**
+	 * Вернуть слова, начинающиеся с гласных букв.
+	 */
 	private List<Word> getWordsWithVowels(List<Word> words) {
 		List<Word> result = new ArrayList<Word>();
 		for (Word word : words) {
@@ -32,7 +38,10 @@ public class Task8 implements Task {
 		}
 		return result;
 	}
-	
+
+	/**
+	 * Убрать слова, состоящие только из глассных букв
+	 */
 	private List<Word> isAllVowels(List<Word> words) {
 		List<Word> result = new ArrayList<Word>();
 		for (Word word : words) {
@@ -47,5 +56,4 @@ public class Task8 implements Task {
 		}
 		return result;
 	}
-
 }

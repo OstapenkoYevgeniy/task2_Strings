@@ -9,7 +9,9 @@ import com.john.string.text.Sentence;
 import com.john.string.text.Text;
 import com.john.string.text.token.Word;
 
-// найти наибольшее кол-во предложений, в которыйх есть одинаковые слова
+/**
+ * Найти наибольшее количество предложений текста, в которых есть одинаковые слова.
+ */
 public class Task1 implements Task {
 	TextPrinter textPrinter = new TextPrinter();
 	TextExtractor textExtractor = new TextExtractor();
@@ -29,6 +31,9 @@ public class Task1 implements Task {
 		textPrinter.print(result);
 	}
 
+	/**
+	 * Если есть одинаковые слова
+	 */
 	private boolean isSameWords(Sentence sentence) {
 		List<Word> words = textExtractor.extractAllWordFromSentence(sentence);
 		
